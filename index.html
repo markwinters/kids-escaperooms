@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Feestmissie · Escaperooms voor kinderfeestjes</title>
+<meta name="description" content="Een escaperoom voor het kinderfeestje, gewoon thuis. Print de puzzels, verstop de enveloppen en speel met timer, hints en codeslot op de telefoon.">
+<meta name="theme-color" content="#17153a">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito:wght@400;600;700;800;900&family=Special+Elite&display=swap">
+<style>
+:root {
+  --night: #17153a;
+  --card: #221f52;
+  --line: #3a357c;
+  --cream: #fff8ec;
+  --muted: #b9b4e6;
+  --red: #ff5a67;
+  --yellow: #ffd23f;
+  --mint: #7fe0b0;
+  --blue: #7aa7ff;
+  --on-yellow: #1b1840;
+  --font-display: "Luckiest Guy", "Arial Black", Impact, system-ui, sans-serif;
+  --font-body: "Nunito", "Trebuchet MS", system-ui, sans-serif;
+  --font-type: "Special Elite", "Courier New", ui-monospace, monospace;
+  --radius: 20px;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0; color: var(--cream); font-family: var(--font-body); font-size: 18px; line-height: 1.55;
+  background:
+    radial-gradient(1200px 700px at 80% -200px, rgba(255, 210, 63, .12), transparent 70%),
+    radial-gradient(900px 600px at -10% 30%, rgba(122, 167, 255, .08), transparent 70%),
+    var(--night);
+  overflow-x: hidden;
+}
+html { overflow-x: clip; }
+.stage { overflow-x: clip; overflow-y: visible; }
+a { color: var(--yellow); }
+h1, h2, h3 { margin: 0; text-wrap: balance; font-weight: 400; }
+p { margin: 0; }
+:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 max(16px, env(safe-area-inset-left, 0px)); }
+.eyebrow { font-family: var(--font-type); font-size: 14px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.display { font-family: var(--font-display); letter-spacing: .01em; line-height: .98; }
+.h2 { font-family: var(--font-display); font-size: clamp(34px, 6vw, 52px); line-height: 1; }
+.lead { font-size: clamp(18px, 2.2vw, 21px); color: var(--cream); }
+.muted { color: var(--muted); }
+section { padding: clamp(56px, 9vw, 104px) 0; }
+.sec-head { display: flex; flex-direction: column; gap: 14px; max-width: 680px; margin-bottom: 40px; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; cursor: pointer;
+  border: 0; border-radius: 14px; min-height: 56px; padding: 0 24px;
+  font-family: var(--font-display); font-size: 21px; letter-spacing: .03em;
+  background: var(--yellow); color: var(--on-yellow); box-shadow: 0 5px 0 #c99a12;
+  transition: transform .08s ease, box-shadow .08s ease;
+}
+.btn { text-align: center; line-height: 1.1; }
+@media (max-width: 480px) { .btn { font-size: 18px; padding: 10px 18px; } .nav-links .btn { font-size: 15px; padding: 0 12px; white-space: nowrap; } }
+.btn:active { transform: translateY(3px); box-shadow: 0 2px 0 #c99a12; }
+.btn.ghost { background: transparent; color: var(--cream); border: 2px solid var(--line); box-shadow: none; font-family: var(--font-body); font-weight: 800; font-size: 17px; }
+.btn.ghost:hover { border-color: var(--muted); }
+
+/* nav */
+.nav { position: sticky; top: 0; z-index: 10; background: rgba(23, 21, 58, .88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(58, 53, 124, .6); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 68px; }
+.logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--cream); font-family: var(--font-display); font-size: 24px; letter-spacing: .02em; }
+.logo span { padding-top: 4px; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a:not(.btn) { color: var(--muted); text-decoration: none; font-weight: 800; font-size: 16px; padding: 10px 12px; border-radius: 10px; }
+.nav-links a:not(.btn):hover { color: var(--cream); }
+.nav-links .btn { min-height: 44px; font-size: 17px; padding: 0 16px; margin-left: 8px; }
+@media (max-width: 820px) { .nav-links a:not(.btn) { display: none; } }
+
+/* hero */
+.hero { padding-top: clamp(40px, 7vw, 80px); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 48px; align-items: center; }
+@media (max-width: 900px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); } }
+.hero-copy { display: flex; flex-direction: column; gap: 22px; }
+.hero h1 { font-size: clamp(46px, 8.4vw, 86px); color: var(--cream); }
+.hero h1 em { font-style: normal; color: var(--yellow); }
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 6px 14px; font-weight: 700; font-size: 15px; }
+
+/* phone mockup */
+.stage { position: relative; display: grid; place-items: center; min-height: 560px; }
+.phone {
+  position: relative; z-index: 2; width: min(270px, 72vw); aspect-ratio: 9 / 18.5; border-radius: 42px; padding: 12px;
+  background: #0b0a22; box-shadow: 0 0 0 2px #3a357c, 0 40px 80px -30px rgba(0, 0, 0, .9);
+  transform: rotate(3deg);
+}
+.screen { height: 100%; border-radius: 32px; background: var(--night); overflow: hidden; display: flex; flex-direction: column; gap: 10px; padding: 34px 14px 14px; position: relative; }
+.screen::before { content: ""; position: absolute; top: 10px; left: 50%; width: 80px; height: 20px; margin-left: -40px; border-radius: 12px; background: #0b0a22; }
+.m-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.m-status { flex-direction: row; justify-content: space-between; align-items: center; }
+.m-timer { font-family: var(--font-display); font-size: 32px; color: var(--yellow); line-height: 1; font-variant-numeric: tabular-nums; }
+.m-label { font-family: var(--font-type); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.m-pips { display: flex; gap: 5px; }
+.m-pip { width: 24px; height: 24px; border-radius: 8px; border: 2px solid var(--line); display: grid; place-items: center; font-family: var(--font-display); font-size: 12px; color: var(--muted); }
+.m-pip.done { background: var(--mint); border-color: var(--mint); color: var(--on-yellow); }
+.m-pip.now { border-color: var(--yellow); color: var(--yellow); }
+.m-title { font-family: var(--font-display); font-size: 21px; line-height: 1.05; }
+.m-text { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+.m-boxes { display: flex; gap: 6px; }
+.m-box { flex: 1; aspect-ratio: 4 / 5; border-radius: 9px; border: 2px solid var(--line); background: var(--night); display: grid; place-items: center; font-family: var(--font-display); font-size: 22px; }
+.m-box.cur { border-color: var(--yellow); }
+.m-btn { background: var(--yellow); color: var(--on-yellow); border-radius: 10px; text-align: center; padding: 9px; font-family: var(--font-display); font-size: 15px; box-shadow: 0 3px 0 #c99a12; }
+.m-hint { border: 2px dashed var(--yellow); color: var(--yellow); border-radius: 999px; font-size: 11.5px; font-weight: 800; padding: 5px 10px; align-self: flex-start; }
+.envelope {
+  position: absolute; z-index: 1; width: 170px; height: 112px; border-radius: 6px; background: #fff3d6; box-shadow: 0 24px 40px -18px rgba(0, 0, 0, .8);
+  display: grid; place-items: center;
+}
+.envelope::before { content: ""; position: absolute; inset: 0; background: linear-gradient(160deg, transparent 49.5%, #e9d6a8 50%, transparent 50.5%), linear-gradient(20deg, transparent 49.5%, #e9d6a8 50%, transparent 50.5%); border-radius: 6px; }
+.envelope b { position: relative; width: 44px; height: 44px; border-radius: 50%; background: #d43b4a; color: #fff; display: grid; place-items: center; font-family: var(--font-display); font-size: 22px; font-weight: 400; box-shadow: 0 0 0 3px #fff3d6, 0 0 0 5px #d43b4a; }
+.env1 { left: 0; top: 40px; transform: rotate(-12deg); }
+.env2 { right: -10px; top: 120px; transform: rotate(10deg); }
+.env3 { left: 10px; bottom: 30px; transform: rotate(7deg); }
+.sticker {
+  position: absolute; z-index: 3; right: 6%; bottom: 60px; transform: rotate(-8deg);
+  background: var(--mint); color: var(--on-yellow); font-family: var(--font-display); font-size: 18px; line-height: 1.05; text-align: center;
+  padding: 12px 14px; border-radius: 14px; box-shadow: 0 14px 30px -12px rgba(0, 0, 0, .7);
+}
+@media (max-width: 520px) { .envelope { width: 130px; height: 86px; } .env2 { right: 0; } .stage { min-height: 520px; } }
+
+/* features */
+.pdf-vs { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
+.pdf-vs .cross { flex-direction: row; flex-wrap: wrap; gap: 8px 28px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; display: flex; flex-direction: column; gap: 12px; }
+.card.plain { background: transparent; border-style: dashed; }
+.card h3 { font-family: var(--font-display); font-size: 26px; line-height: 1.05; }
+.feat-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+@media (max-width: 860px) { .feat-grid { grid-template-columns: minmax(0, 1fr); } }
+.icon { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; }
+.icon.y { background: rgba(255, 210, 63, .14); }
+.icon.m { background: rgba(127, 224, 176, .14); }
+.icon.r { background: rgba(255, 90, 103, .14); }
+.icon.b { background: rgba(122, 167, 255, .14); }
+ul.check { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+ul.check li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; }
+ul.check li::before { content: ""; width: 20px; height: 20px; margin-top: 4px; border-radius: 6px; background: var(--mint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3.2 3L15 6.5' fill='none' stroke='%231b1840' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 20px no-repeat; }
+ul.cross li::before { background: var(--line) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M6.5 6.5l7 7M13.5 6.5l-7 7' fill='none' stroke='%23b9b4e6' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") center / 20px no-repeat; }
+
+/* steps */
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; counter-reset: s; margin: 0; padding: 0; list-style: none; }
+@media (max-width: 960px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .steps { grid-template-columns: minmax(0, 1fr); } }
+.steps li { position: relative; padding-top: 70px; }
+.steps li::before {
+  counter-increment: s; content: counter(s); position: absolute; top: 26px; left: 26px;
+  width: 44px; height: 44px; border-radius: 50%; border: 3px solid var(--yellow); color: var(--yellow);
+  display: grid; place-items: center; font-family: var(--font-display); font-size: 22px; padding-top: 3px;
+}
+.steps .time { font-family: var(--font-type); font-size: 14px; color: var(--mint); letter-spacing: .06em; }
+
+/* featured mission */
+.mission { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: center; }
+@media (max-width: 900px) { .mission { grid-template-columns: minmax(0, 1fr); } }
+.dossier { position: relative; background: #fffdf6; color: #1f1b45; border-radius: 6px; padding: 30px 28px; transform: rotate(-1.4deg); box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .9); }
+.dossier::after { content: "STRENG GEHEIM"; position: absolute; right: 18px; top: 22px; transform: rotate(9deg); font-family: var(--font-type); font-size: 13px; letter-spacing: .12em; color: #d43b4a; border: 2px solid #d43b4a; border-radius: 5px; padding: 2px 8px; }
+.dossier .eyebrow { color: #6b6799; }
+.dossier h3 { font-family: var(--font-display); font-size: clamp(36px, 6vw, 50px); color: #d43b4a; line-height: .95; margin: 8px 0 12px; }
+.dossier p { font-size: 17px; }
+.puzzles { display: grid; gap: 10px; margin: 18px 0 0; padding: 0; list-style: none; }
+.puzzles li { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; align-items: center; border-top: 1px dashed #c9c4e4; padding-top: 10px; }
+.puzzles b { width: 36px; height: 36px; border-radius: 50%; background: #d43b4a; color: #fff; display: grid; place-items: center; font-family: var(--font-display); font-weight: 400; font-size: 17px; padding-top: 2px; }
+.mission-copy { display: flex; flex-direction: column; gap: 18px; }
+
+/* themes */
+.themes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+@media (max-width: 1000px) { .themes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .themes { grid-template-columns: minmax(0, 1fr); } }
+.theme { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--card); display: flex; flex-direction: column; }
+.theme-art { height: 150px; display: grid; place-items: center; position: relative; }
+.theme-body { padding: 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.theme-body h3 { font-family: var(--font-display); font-size: 24px; line-height: 1.05; }
+.theme-body .meta { font-family: var(--font-type); font-size: 13px; letter-spacing: .06em; color: var(--muted); }
+.theme-body .btn { margin-top: auto; min-height: 46px; font-size: 17px; }
+.tag { position: absolute; top: 12px; left: 12px; border-radius: 999px; padding: 4px 10px; font-weight: 900; font-size: 13px; }
+.tag.live { background: var(--mint); color: var(--on-yellow); }
+.tag.soon { background: rgba(23, 21, 58, .75); color: var(--cream); border: 1px solid rgba(255, 255, 255, .25); }
+.theme.soon .theme-body h3 { color: var(--muted); }
+
+/* price */
+.price-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0; padding: 0; overflow: hidden; }
+@media (max-width: 860px) { .price-card { grid-template-columns: minmax(0, 1fr); } }
+.price-left { padding: 34px; display: flex; flex-direction: column; gap: 16px; background: linear-gradient(160deg, rgba(255, 210, 63, .14), transparent 60%); border-right: 1px solid var(--line); }
+@media (max-width: 860px) { .price-left { border-right: 0; border-bottom: 1px solid var(--line); } }
+.price { font-family: var(--font-display); font-size: 72px; line-height: 1; color: var(--yellow); }
+.price small { font-size: 24px; color: var(--muted); }
+.price-right { padding: 34px; display: flex; flex-direction: column; gap: 16px; }
+.note { font-size: 15px; color: var(--muted); }
+
+/* faq */
+.faq { display: grid; gap: 12px; max-width: 820px; }
+details { border: 1px solid var(--line); border-radius: 16px; background: var(--card); }
+summary { cursor: pointer; padding: 18px 22px; font-weight: 800; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; font-family: var(--font-display); font-size: 26px; color: var(--yellow); line-height: 1; }
+details[open] summary::after { content: "–"; }
+details p { padding: 0 22px 20px; color: var(--muted); }
+
+/* final cta */
+.final { text-align: center; }
+.final .card { align-items: center; padding: clamp(32px, 6vw, 60px); background: radial-gradient(600px 300px at 50% 0, rgba(255, 210, 63, .16), transparent 70%), var(--card); }
+.final h2 { font-size: clamp(36px, 6.4vw, 60px); }
+
+footer { padding: 40px 0 calc(40px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: center; }
+footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
+footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Feestmissie, naar boven">
+      <svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true"><circle cx="14" cy="14" r="8" fill="none" stroke="#ffd23f" stroke-width="3"/><path d="M20 20 L27 27" stroke="#ffd23f" stroke-width="3.6" stroke-linecap="round"/><path d="M10 15.5 h8 l-1.2-3.8 h-5.6 z" fill="#ff5a67"/><circle cx="14" cy="10.6" r="1.5" fill="#ff5a67"/></svg>
+      <span>Feestmissie</span>
+    </a>
+    <nav class="nav-links" aria-label="Hoofdmenu">
+      <a href="#hoe">Hoe werkt het</a>
+      <a href="#missies">Missies</a>
+      <a href="#prijs">Prijs</a>
+      <a href="#vragen">Vragen</a>
+      <a class="btn" href="taartrover/">Speel de demo</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="eyebrow">Escaperoom voor het kinderfeestje</p>
+        <h1 class="display">Een escaperoom.<br><em>Gewoon thuis.</em></h1>
+        <p class="lead">Print de puzzels, verstop de enveloppen en laat de kinderen een uur lang een spannende missie spelen. Op de telefoon staan de timer, de hints en een echt codeslot.</p>
+        <div class="cta-row">
+          <a class="btn" href="taartrover/">Probeer De Taartrover gratis</a>
+          <a class="btn ghost" href="#hoe">Zo werkt het</a>
+        </div>
+        <div class="chips">
+          <span class="chip">7 tot 10 jaar</span>
+          <span class="chip">3 tot 8 kinderen</span>
+          <span class="chip">45 tot 60 minuten</span>
+          <span class="chip">15 minuten klaarzetten</span>
+        </div>
+      </div>
+
+      <div class="stage" aria-hidden="true">
+        <div class="envelope env1"><b>1</b></div>
+        <div class="envelope env2"><b>2</b></div>
+        <div class="envelope env3"><b>3</b></div>
+        <div class="phone">
+          <div class="screen">
+            <div class="m-card m-status">
+              <div><div class="m-label">Tijd over</div><div class="m-timer" id="hero-timer">31:47</div></div>
+              <div class="m-pips"><span class="m-pip done">1</span><span class="m-pip done">2</span><span class="m-pip now">3</span><span class="m-pip">4</span></div>
+            </div>
+            <div class="m-card">
+              <div class="m-label">Envelop 3 van 4</div>
+              <div class="m-title">Hagelslag tellen</div>
+              <div class="m-text">Tel de hagelslag op de taart. Kersen tellen niet mee.</div>
+              <div class="m-boxes"><span class="m-box">3</span><span class="m-box">5</span><span class="m-box cur"></span><span class="m-box"></span></div>
+              <div class="m-btn">Open het slot</div>
+              <div class="m-hint">Geef ons hint 2</div>
+            </div>
+            <div class="m-card" style="background:var(--yellow);color:var(--on-yellow);border:0;transform:rotate(-1deg)">
+              <div class="m-text" style="color:var(--on-yellow);font-weight:800">Hint 1: Tel één soort tegelijk en zet een streepje op elke vorm die je al hebt geteld.</div>
+            </div>
+          </div>
+        </div>
+        <div class="sticker">Klik!<br>Slot open</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="meer">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Meer dan een PDF</p>
+        <h2 class="h2">De telefoon is de spelleider</h2>
+        <p class="lead muted">Bij een gewone print-escaperoom moet jij de antwoorden controleren en hints verzinnen. Bij Feestmissie doet de telefoon dat. Jij kunt gewoon meekijken.</p>
+      </div>
+      <div class="pdf-vs">
+        <div class="card plain">
+          <h3 class="muted">Alleen een PDF</h3>
+          <ul class="check cross">
+            <li>Jij houdt de tijd bij</li>
+            <li>Kinderen roepen steeds: is dit goed?</li>
+            <li>Jij moet hints verzinnen</li>
+            <li>Het einde is een beetje stil</li>
+          </ul>
+        </div>
+        <div class="feat-grid">
+          <div class="card">
+            <div class="icon y"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="15.5" r="9.5" fill="none" stroke="#ffd23f" stroke-width="2.6"/><path d="M14 10v6l4 2.5M11 3h6" fill="none" stroke="#ffd23f" stroke-width="2.6" stroke-linecap="round"/></svg></div>
+            <h3>Timer die tikt</h3>
+            <p class="muted">Jullie hebben 45 minuten voordat de slagroom smelt. In de laatste 5 minuten wordt de klok rood.</p>
+          </div>
+          <div class="card">
+            <div class="icon m"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect x="5" y="12" width="18" height="13" rx="3" fill="none" stroke="#7fe0b0" stroke-width="2.6"/><path d="M9 12V8.5a5 5 0 0 1 10 0" fill="none" stroke="#7fe0b0" stroke-width="2.6" stroke-linecap="round"/><circle cx="14" cy="18.5" r="1.8" fill="#7fe0b0"/></svg></div>
+            <h3>Een echt codeslot</h3>
+            <p class="muted">De kinderen typen de code in. Is hij goed? Klik, het slot gaat open en de pagina zegt waar de volgende envelop ligt.</p>
+          </div>
+          <div class="card">
+            <div class="icon r"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><path d="M10 22h8M11 25.5h6M14 3a8 8 0 0 0-4.6 14.5c.6.5 1 1.3 1 2.1V20h7.2v-.4c0-.8.4-1.6 1-2.1A8 8 0 0 0 14 3Z" fill="none" stroke="#ff5a67" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
+            <h3>Twee hints per puzzel</h3>
+            <p class="muted">Vast? De kinderen vragen zelf een hint. Eerst een kleine duw, daarna een grotere. Zo blijft het spannend en niemand haakt af.</p>
+          </div>
+          <div class="card">
+            <div class="icon b"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 25s8-6.6 8-13a8 8 0 0 0-16 0c0 6.4 8 13 8 13Z" fill="none" stroke="#7aa7ff" stroke-width="2.6" stroke-linejoin="round"/><circle cx="14" cy="12" r="3" fill="#7aa7ff"/></svg></div>
+            <h3>Jouw verstopplekken</h3>
+            <p class="muted">Jij vult in waar de enveloppen en de taart liggen. Onder de bank, in de koelkast: het spel past bij jouw huis.</p>
+          </div>
+          <div class="card">
+            <div class="icon y"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><path d="M14 3l3.2 6.6 7.3 1-5.3 5.1 1.3 7.2L14 19.5l-6.5 3.4 1.3-7.2-5.3-5.1 7.3-1Z" fill="none" stroke="#ffd23f" stroke-width="2.4" stroke-linejoin="round"/></svg></div>
+            <h3>Naam van de jarige</h3>
+            <p class="muted">Het verhaal gaat over het feest van jouw kind. De naam staat in de missie en op het diploma.</p>
+          </div>
+          <div class="card">
+            <div class="icon m"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect x="4" y="5" width="20" height="15" rx="2" fill="none" stroke="#7fe0b0" stroke-width="2.6"/><circle cx="14" cy="21" r="4" fill="#7fe0b0"/><path d="M9 10h10M9 14h6" stroke="#7fe0b0" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+            <h3>Een diploma aan het eind</h3>
+            <p class="muted">Kluis open, taart gevonden. Daarna staat er een diploma op het scherm, met hun tijd en het aantal hints.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="hoe">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Hoe werkt het</p>
+        <h2 class="h2">Van download tot taart in vier stappen</h2>
+      </div>
+      <ol class="steps">
+        <li class="card">
+          <span class="time">2 minuten</span>
+          <h3>Kies een missie</h3>
+          <p class="muted">Je koopt een download. Je krijgt meteen de puzzels als PDF en een link naar de spelpagina.</p>
+        </li>
+        <li class="card">
+          <span class="time">15 minuten</span>
+          <h3>Print en verstop</h3>
+          <p class="muted">Print vier vellen op A4, stop ze in enveloppen en verstop ze in huis. Vul de plekken in op de pagina.</p>
+        </li>
+        <li class="card">
+          <span class="time">45 tot 60 minuten</span>
+          <h3>De kinderen spelen</h3>
+          <p class="muted">Ze krijgen envelop 1 en de telefoon. Elke goede code vertelt waar de volgende envelop ligt.</p>
+        </li>
+        <li class="card">
+          <span class="time">Het grote moment</span>
+          <h3>Kluis open!</h3>
+          <p class="muted">Na de laatste code staat er waar de taart verstopt is. Iedereen krijgt een diploma.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="taartrover">
+    <div class="wrap mission">
+      <div class="dossier">
+        <p class="eyebrow">Dossier 7-B · Taartbureau</p>
+        <h3>De Taartrover</h3>
+        <p>De verjaardagstaart is gestolen! Op het taartbord zit een vingerafdruk en in huis liggen geheime enveloppen. De detectives van het Taartbureau hebben 45 minuten voordat de slagroom smelt.</p>
+        <ul class="puzzles">
+          <li><b>1</b><span>Vergelijk vingerafdrukken en vind de dader.</span></li>
+          <li><b>2</b><span>Ontcijfer een briefje in geheimschrift.</span></li>
+          <li><b>3</b><span>Tel de hagelslag op de taart.</span></li>
+          <li><b>4</b><span>Knip een verscheurd briefje uit en leg het in de goede volgorde.</span></li>
+        </ul>
+      </div>
+      <div class="mission-copy">
+        <p class="eyebrow">De eerste missie</p>
+        <h2 class="h2">Probeer hem nu, gratis</h2>
+        <p class="lead muted">De Taartrover is helemaal speelbaar. Bij <strong>Voor ouders</strong> vul je de naam en de verstopplekken in. Daar staan ook de voorbereiding, de antwoorden en de vier puzzelvellen om te printen.</p>
+        <ul class="check">
+          <li>Voor kinderen van 7 tot 10 jaar</li>
+          <li>Je hebt nodig: een printer, 4 enveloppen, pennen en een schaar</li>
+          <li>Werkt op elke telefoon, je hoeft niets te installeren</li>
+        </ul>
+        <div class="cta-row">
+          <a class="btn" href="taartrover/">Start de missie</a>
+          <a class="btn ghost" href="taartrover/#ouders">Voor ouders</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="missies">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Missies</p>
+        <h2 class="h2">Voor elk feest een nieuwe missie</h2>
+        <p class="lead muted">Elk kind is elk jaar jarig. Daarom komen er steeds nieuwe missies bij, ook voor Halloween, Sinterklaas en Pasen.</p>
+      </div>
+      <div class="themes">
+        <article class="theme">
+          <div class="theme-art" style="background:linear-gradient(160deg,#ff7a85,#d43b4a)">
+            <span class="tag live">Nu te spelen</span>
+            <svg width="110" height="100" viewBox="0 0 110 100" aria-hidden="true"><rect x="15" y="50" width="80" height="34" rx="6" fill="#f6d7a7" stroke="#1f1b45" stroke-width="3"/><rect x="15" y="40" width="80" height="16" rx="6" fill="#fff4f7" stroke="#1f1b45" stroke-width="3"/><path d="M35 40V26M55 40V22M75 40V26" stroke="#1f1b45" stroke-width="3"/><path d="M35 22q3-5 0-8M55 18q3-5 0-8M75 22q3-5 0-8" fill="none" stroke="#ffd23f" stroke-width="3" stroke-linecap="round"/><circle cx="35" cy="66" r="3" fill="#7aa7ff"/><circle cx="55" cy="70" r="3" fill="#7fe0b0"/><circle cx="75" cy="64" r="3" fill="#ffd23f"/></svg>
+          </div>
+          <div class="theme-body">
+            <h3>De Taartrover</h3>
+            <p class="meta">Verjaardag · 7 tot 10 jaar</p>
+            <p class="muted">Wie heeft de verjaardagstaart gestolen? Vind de dader voordat de slagroom smelt.</p>
+            <a class="btn" href="taartrover/">Speel gratis</a>
+          </div>
+        </article>
+        <article class="theme soon">
+          <div class="theme-art" style="background:linear-gradient(160deg,#4b3a8f,#221f52)">
+            <span class="tag soon">Najaar</span>
+            <svg width="110" height="100" viewBox="0 0 110 100" aria-hidden="true"><path d="M30 88V45a25 25 0 0 1 50 0v43l-8-7-9 7-8-7-8 7-9-7Z" fill="#fff8ec" stroke="#1f1b45" stroke-width="3" stroke-linejoin="round"/><ellipse cx="46" cy="46" rx="4" ry="6" fill="#1f1b45"/><ellipse cx="64" cy="46" rx="4" ry="6" fill="#1f1b45"/><ellipse cx="55" cy="62" rx="5" ry="4" fill="#1f1b45"/></svg>
+          </div>
+          <div class="theme-body">
+            <h3>Het Spookslot</h3>
+            <p class="meta">Halloween · 8 tot 12 jaar</p>
+            <p class="muted">Een spook zit opgesloten in een oud slot. Breek de vloek voor middernacht.</p>
+            <span class="btn ghost" aria-disabled="true">Binnenkort</span>
+          </div>
+        </article>
+        <article class="theme soon">
+          <div class="theme-art" style="background:linear-gradient(160deg,#c8102e,#7a0f22)">
+            <span class="tag soon">November</span>
+            <svg width="110" height="100" viewBox="0 0 110 100" aria-hidden="true"><path d="M35 86V42l20-28 20 28v44Z" fill="#fff8ec" stroke="#1f1b45" stroke-width="3" stroke-linejoin="round"/><path d="M55 34v34M44 48h22" stroke="#ffd23f" stroke-width="5" stroke-linecap="round"/><path d="M35 78h40" stroke="#ffd23f" stroke-width="4"/></svg>
+          </div>
+          <div class="theme-body">
+            <h3>De Verdwenen Mijter</h3>
+            <p class="meta">Sinterklaas · 5 tot 9 jaar</p>
+            <p class="muted">De mijter van de Sint is weg. Volg het spoor van pepernoten en vind hem op tijd.</p>
+            <span class="btn ghost" aria-disabled="true">Binnenkort</span>
+          </div>
+        </article>
+        <article class="theme soon">
+          <div class="theme-art" style="background:linear-gradient(160deg,#7fe0b0,#3a9a72)">
+            <span class="tag soon">Voorjaar</span>
+            <svg width="110" height="100" viewBox="0 0 110 100" aria-hidden="true"><ellipse cx="55" cy="56" rx="26" ry="33" fill="#fff8ec" stroke="#1f1b45" stroke-width="3"/><path d="M30 50l9-6 8 6 8-6 8 6 8-6 9 6" fill="none" stroke="#ff5a67" stroke-width="4" stroke-linejoin="round"/><path d="M31 66h48" stroke="#7aa7ff" stroke-width="4"/><circle cx="45" cy="76" r="3" fill="#ffd23f"/><circle cx="65" cy="76" r="3" fill="#ffd23f"/></svg>
+          </div>
+          <div class="theme-body">
+            <h3>Het Paasei-alarm</h3>
+            <p class="meta">Pasen · 6 tot 10 jaar</p>
+            <p class="muted">Het gouden paasei is gestolen uit de eierfabriek. Wie zit erachter?</p>
+            <span class="btn ghost" aria-disabled="true">Binnenkort</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="prijs">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Prijs</p>
+        <h2 class="h2">Eén download, een heel feest</h2>
+        <p class="lead muted">Geen verzendkosten en niets om op te wachten. Je krijgt alles meteen na het betalen.</p>
+      </div>
+      <div class="card price-card">
+        <div class="price-left">
+          <p class="eyebrow">Per missie</p>
+          <p class="price">€9,95 <small>eenmalig</small></p>
+          <p class="muted">Print zo vaak als je wilt. Speel het spel opnieuw met broertjes, zusjes of neefjes.</p>
+          <a class="btn" href="taartrover/">Probeer eerst gratis</a>
+          <p class="note">De shop gaat binnenkort open. Tot die tijd kun je De Taartrover helemaal gratis spelen.</p>
+        </div>
+        <div class="price-right">
+          <h3 class="display" style="font-size:26px">Dit krijg je</h3>
+          <ul class="check">
+            <li>4 puzzelvellen als PDF om te printen op A4</li>
+            <li>De spelpagina voor de telefoon: timer, codeslot en 2 hints per puzzel</li>
+            <li>Jouw eigen verstopplekken en de naam van de jarige in het spel</li>
+            <li>Een diploma voor alle detectives</li>
+            <li>Een handleiding voor ouders met alle antwoorden</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="vragen">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Vragen van ouders</p>
+        <h2 class="h2">Goed om te weten</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Voor welke leeftijd is het?</summary>
+          <p>De Taartrover is gemaakt voor kinderen van 7 tot 10 jaar. Zijn de kinderen jonger? Lees de raadsels dan samen voor en houd de telefoon zelf bij je.</p>
+        </details>
+        <details>
+          <summary>Met hoeveel kinderen kun je spelen?</summary>
+          <p>Met 3 tot 8 kinderen werkt het het best. Heb je een grotere groep? Print de puzzels twee keer en laat twee teams tegen elkaar spelen, elk met een eigen telefoon.</p>
+        </details>
+        <details>
+          <summary>Wat heb ik nodig?</summary>
+          <p>Een printer, vier enveloppen, pennen, een schaar en een telefoon of tablet. Kleur printen is leuk, maar zwart-wit werkt ook.</p>
+        </details>
+        <details>
+          <summary>Hoeveel tijd kost het klaarzetten?</summary>
+          <p>Ongeveer een kwartier. Printen, de vellen in enveloppen stoppen en ze verstoppen. De voorbereiding staat stap voor stap op de pagina Voor ouders.</p>
+        </details>
+        <details>
+          <summary>Moet ik een app installeren?</summary>
+          <p>Nee. De spelpagina werkt in de browser van elke telefoon. Je hebt internet nodig om hem te openen. De voortgang blijft bewaard, ook als de telefoon even op slot gaat.</p>
+        </details>
+        <details>
+          <summary>En als de kinderen vastlopen?</summary>
+          <p>Bij elke puzzel kunnen ze twee hints vragen. Jij vindt alle antwoorden bij Voor ouders. Is de tijd om? Dan mogen ze gewoon doorspelen.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <div class="card">
+        <p class="eyebrow">Alarm op het Taartbureau</p>
+        <h2 class="display">Wie heeft de taart gepakt?</h2>
+        <p class="lead muted" style="max-width:560px">Speel De Taartrover nu op je telefoon. De antwoorden staan onder Voor ouders, maar je mag ook gewoon gokken.</p>
+        <a class="btn" href="taartrover/">Start de missie</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Feestmissie · Escaperooms voor kinderfeestjes</span>
+    <nav aria-label="Onderaan">
+      <a href="#hoe">Hoe werkt het</a>
+      <a href="#missies">Missies</a>
+      <a href="taartrover/#ouders">Voor ouders</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  // Let the timer on the phone mockup tick down, so the hero feels alive.
+  (function () {
+    var el = document.getElementById("hero-timer");
+    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var left = 31 * 60 + 47;
+    setInterval(function () {
+      left = left > 0 ? left - 1 : 45 * 60;
+      el.textContent = Math.floor(left / 60) + ":" + String(left % 60).padStart(2, "0");
+    }, 1000);
+  })();
+</script>
+</body>
+</html>
