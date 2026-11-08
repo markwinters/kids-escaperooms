@@ -219,6 +219,8 @@
 
   Missie.start({
     key: "mijter",
+    // the colours of this mission page; see the :root block in ../assets/missie.css for every name
+    kleuren: { night: "#2a0d18", card: "#3e1423", line: "#6b2639", cream: "#fff6e8", muted: "#eab9c3", red: "#ff6b74", yellow: "#f5c542", mint: "#8fe3b5", onYellow: "#2a0d18", glow: "rgba(245, 197, 66, 0.14)", diplomaRand: "#f3d27a", diplomaTitel: "#b3102a", zegel: "#b3102a" },
     answers: ["528", "631", "GOUD", "4172"],
     steps: [
       {
@@ -299,7 +301,6 @@
     parent: {
       title: "Zo zet je De Verdwenen Mijter klaar",
       intro: "Een escaperoom voor pakjesavond of een Sinterklaasfeest thuis. De kinderen lossen vier raadsels op papier op en vullen de codes in op deze pagina. Na elke goede code vertelt de pagina waar de volgende envelop ligt. Na de laatste code vinden ze de mijter.",
-      facts: ["5 tot 9 jaar", "2 tot 8 kinderen", "ongeveer 45 minuten", "15 minuten voorbereiden"],
       formTitle: "Jullie Sinterklaasfeest",
       nameLabel: "Voor wie is het feest? (namen of familienaam)",
       prep: [

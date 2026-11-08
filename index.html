@@ -184,8 +184,15 @@ ul.cross li::before { background: var(--line) url("data:image/svg+xml,%3Csvg xml
 .theme-body .btn { margin-top: auto; min-height: 46px; font-size: 17px; }
 .tag { position: absolute; top: 12px; left: 12px; border-radius: 999px; padding: 4px 10px; font-weight: 900; font-size: 13px; }
 .tag.live { background: var(--mint); color: var(--on-yellow); }
-.tag.soon { background: rgba(23, 21, 58, .75); color: var(--cream); border: 1px solid rgba(255, 255, 255, .25); }
-.theme.soon .theme-body h3 { color: var(--muted); }
+.tag.new { background: var(--yellow); color: var(--on-yellow); }
+.theme-art img { width: 110px; height: 100px; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin: -16px 0 24px; }
+.filter {
+  appearance: none; cursor: pointer; min-height: 44px; padding: 0 16px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--card); color: var(--muted); font: inherit; font-weight: 800; font-size: 15px;
+}
+.filter span { font-weight: 600; opacity: .8; }
+.filter[aria-pressed="true"] { background: var(--yellow); border-color: var(--yellow); color: var(--on-yellow); }
 
 /* faq */
 .faq { display: grid; gap: 12px; max-width: 820px; }
@@ -237,7 +244,7 @@ footer a { color: var(--muted); }
           <a class="btn ghost" href="#hoe">Zo werkt het</a>
         </div>
         <div class="chips">
-          <span class="chip">5 tot 12 jaar</span>
+          <span class="chip" id="age-chip">5 tot 12 jaar</span>
           <span class="chip">3 tot 8 kinderen</span>
           <span class="chip">45 tot 60 minuten</span>
           <span class="chip">15 minuten klaarzetten</span>
@@ -392,57 +399,11 @@ footer a { color: var(--muted); }
       <div class="sec-head">
         <p class="eyebrow">Missies</p>
         <h2 class="h2">Voor elk feest een nieuwe missie</h2>
-        <p class="lead muted">Elk kind is elk jaar jarig. Daarom komen er steeds nieuwe missies bij, ook voor Halloween, Sinterklaas en Pasen. Alle vier de missies zijn nu te spelen.</p>
+        <p class="lead muted">Elk kind is elk jaar jarig. Daarom komen er steeds nieuwe missies bij, ook voor feestdagen. <span id="mission-count"></span></p>
       </div>
-      <div class="themes">
-        <article class="theme">
-          <div class="theme-art" style="background:linear-gradient(160deg,#ff7a85,#d43b4a)">
-            <span class="tag live">Nu te spelen</span>
-            <svg width="110" height="100" viewBox="0 0 110 100" aria-hidden="true"><rect x="15" y="50" width="80" height="34" rx="6" fill="#f6d7a7" stroke="#1f1b45" stroke-width="3"/><rect x="15" y="40" width="80" height="16" rx="6" fill="#fff4f7" stroke="#1f1b45" stroke-width="3"/><path d="M35 40V26M55 40V22M75 40V26" stroke="#1f1b45" stroke-width="3"/><path d="M35 22q3-5 0-8M55 18q3-5 0-8M75 22q3-5 0-8" fill="none" stroke="#ffd23f" stroke-width="3" stroke-linecap="round"/><circle cx="35" cy="66" r="3" fill="#7aa7ff"/><circle cx="55" cy="70" r="3" fill="#7fe0b0"/><circle cx="75" cy="64" r="3" fill="#ffd23f"/></svg>
-          </div>
-          <div class="theme-body">
-            <h3>De Taartrover</h3>
-            <p class="meta">Verjaardag · 7 tot 10 jaar</p>
-            <p class="muted">Wie heeft de verjaardagstaart gestolen? Vind de dader voordat de slagroom smelt.</p>
-            <a class="btn" href="taartrover/">Speel deze missie</a>
-          </div>
-        </article>
-        <article class="theme">
-          <div class="theme-art" style="background:linear-gradient(160deg,#4b3a8f,#221f52)">
-            <span class="tag live">Nu te spelen</span>
-            <svg width="110" height="100" viewBox="0 0 110 100" aria-hidden="true"><path d="M30 88V45a25 25 0 0 1 50 0v43l-8-7-9 7-8-7-8 7-9-7Z" fill="#fff8ec" stroke="#1f1b45" stroke-width="3" stroke-linejoin="round"/><ellipse cx="46" cy="46" rx="4" ry="6" fill="#1f1b45"/><ellipse cx="64" cy="46" rx="4" ry="6" fill="#1f1b45"/><ellipse cx="55" cy="62" rx="5" ry="4" fill="#1f1b45"/></svg>
-          </div>
-          <div class="theme-body">
-            <h3>Het Spookslot</h3>
-            <p class="meta">Halloween · 8 tot 12 jaar</p>
-            <p class="muted">Spook Wiebe zit al honderd jaar opgesloten. Kraak het geheimschrift en breek de vloek voor middernacht.</p>
-            <a class="btn" href="spookslot/">Speel deze missie</a>
-          </div>
-        </article>
-        <article class="theme">
-          <div class="theme-art" style="background:linear-gradient(160deg,#c8102e,#7a0f22)">
-            <span class="tag live">Nu te spelen</span>
-            <svg width="110" height="100" viewBox="0 0 110 100" aria-hidden="true"><path d="M35 86V42l20-28 20 28v44Z" fill="#fff8ec" stroke="#1f1b45" stroke-width="3" stroke-linejoin="round"/><path d="M55 34v34M44 48h22" stroke="#ffd23f" stroke-width="5" stroke-linecap="round"/><path d="M35 78h40" stroke="#ffd23f" stroke-width="4"/></svg>
-          </div>
-          <div class="theme-body">
-            <h3>De Verdwenen Mijter</h3>
-            <p class="meta">Sinterklaas · 5 tot 9 jaar</p>
-            <p class="muted">De mijter van de Sint is weg. Volg het pepernotenspoor en vind hem voor pakjesavond.</p>
-            <a class="btn" href="mijter/">Speel deze missie</a>
-          </div>
-        </article>
-        <article class="theme">
-          <div class="theme-art" style="background:linear-gradient(160deg,#7fe0b0,#3a9a72)">
-            <span class="tag live">Nu te spelen</span>
-            <svg width="110" height="100" viewBox="0 0 110 100" aria-hidden="true"><ellipse cx="55" cy="56" rx="26" ry="33" fill="#fff8ec" stroke="#1f1b45" stroke-width="3"/><path d="M30 50l9-6 8 6 8-6 8 6 8-6 9 6" fill="none" stroke="#ff5a67" stroke-width="4" stroke-linejoin="round"/><path d="M31 66h48" stroke="#7aa7ff" stroke-width="4"/><circle cx="45" cy="76" r="3" fill="#ffd23f"/><circle cx="65" cy="76" r="3" fill="#ffd23f"/></svg>
-          </div>
-          <div class="theme-body">
-            <h3>Het Paasei-alarm</h3>
-            <p class="meta">Pasen · 6 tot 10 jaar</p>
-            <p class="muted">Het gouden paasei is gestolen uit de eierfabriek. Volg het spoor van gele donsveertjes.</p>
-            <a class="btn" href="paasei/">Speel deze missie</a>
-          </div>
-        </article>
+      <div class="filters" id="filters" role="group" aria-label="Kies een thema"></div>
+      <div class="themes" id="mission-grid" aria-live="polite">
+        <noscript><p class="muted">Zet JavaScript aan om de missies te zien.</p></noscript>
       </div>
     </div>
   </section>
@@ -456,7 +417,7 @@ footer a { color: var(--muted); }
       <div class="faq">
         <details>
           <summary>Voor welke leeftijd is het?</summary>
-          <p>Dat verschilt per missie. De Verdwenen Mijter is voor 5 tot 9 jaar, Het Paasei-alarm voor 6 tot 10, De Taartrover voor 7 tot 10 en Het Spookslot voor 8 tot 12 jaar. Zijn de kinderen jonger? Lees de raadsels dan samen voor en houd de telefoon zelf bij je.</p>
+          <p>Dat verschilt per missie. De leeftijd staat bij elke missie in het overzicht. Zijn de kinderen jonger? Lees de raadsels dan samen voor en houd de telefoon zelf bij je.</p>
         </details>
         <details>
           <summary>Met hoeveel kinderen kun je spelen?</summary>
@@ -464,7 +425,7 @@ footer a { color: var(--muted); }
         </details>
         <details>
           <summary>Wat heb ik nodig?</summary>
-          <p>Een printer, vier enveloppen, pennen, een schaar en een telefoon of tablet. Soms nog iets extra's: kleurpotloden voor De Verdwenen Mijter en een spiegel voor Het Paasei-alarm. Kleur printen is leuk, maar zwart-wit werkt ook.</p>
+          <p>Een printer, vier enveloppen, pennen, een schaar en een telefoon of tablet. Soms heb je nog iets extra's nodig, zoals kleurpotloden of een spiegel. Dat staat bij Voor ouders. Kleur printen is leuk, maar zwart-wit werkt ook.</p>
         </details>
         <details>
           <summary>Hoeveel tijd kost het klaarzetten?</summary>
@@ -505,6 +466,53 @@ footer a { color: var(--muted); }
   </div>
 </footer>
 
+<script src="missies.js"></script>
+<script>
+  // Mission cards and the theme filter, built from missies.js
+  (function () {
+    var list = (window.MISSIES || []).filter(function (m) { return m.zichtbaar !== false; });
+    var grid = document.getElementById("mission-grid"), bar = document.getElementById("filters");
+    function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]; }); }
+    function card(m) {
+      return '<article class="theme">' +
+        '<div class="theme-art" style="background:linear-gradient(160deg,' + esc(m.kaart[0]) + "," + esc(m.kaart[1]) + ')">' +
+        (m.nieuw ? '<span class="tag new">Nieuw</span>' : '<span class="tag live">Nu te spelen</span>') +
+        '<img src="' + esc(m.id) + '/icoon.svg" alt="" width="110" height="100"></div>' +
+        '<div class="theme-body"><h3>' + esc(m.titel) + "</h3>" +
+        '<p class="meta">' + esc(m.thema) + " · " + m.leeftijd[0] + " tot " + m.leeftijd[1] + " jaar · " + m.minuten + " min</p>" +
+        '<p class="muted">' + esc(m.kort) + "</p>" +
+        '<a class="btn" href="' + esc(m.id) + '/">Speel deze missie</a></div></article>';
+    }
+    var themes = [];
+    list.forEach(function (m) { if (themes.indexOf(m.thema) < 0) themes.push(m.thema); });
+    var current = "";
+    try { current = sessionStorage.getItem("feestmissie-thema") || ""; } catch (e) { /* no storage */ }
+    if (current && themes.indexOf(current) < 0) current = "";
+    function draw() {
+      var shown = list.filter(function (m) { return !current || m.thema === current; });
+      grid.innerHTML = shown.map(card).join("");
+      bar.innerHTML = [""].concat(themes).map(function (t) {
+        var n = t ? list.filter(function (m) { return m.thema === t; }).length : list.length;
+        return '<button class="filter" type="button" data-thema="' + esc(t) + '" aria-pressed="' + (t === current) + '">' + (t ? esc(t) : "Alle missies") + " <span>" + n + "</span></button>";
+      }).join("");
+    }
+    bar.addEventListener("click", function (e) {
+      var b = e.target.closest(".filter"); if (!b) return;
+      current = b.getAttribute("data-thema");
+      try { sessionStorage.setItem("feestmissie-thema", current); } catch (err) { /* no storage */ }
+      draw();
+    });
+    // only show the filter once there is something to choose between
+    bar.hidden = themes.length < 2;
+    draw();
+    var count = document.getElementById("mission-count");
+    if (count) count.textContent = list.length === 1 ? "Er is nu 1 missie." : "Er zijn nu " + list.length + " missies.";
+    var lo = Math.min.apply(null, list.map(function (m) { return m.leeftijd[0]; }));
+    var hi = Math.max.apply(null, list.map(function (m) { return m.leeftijd[1]; }));
+    var chip = document.getElementById("age-chip");
+    if (chip && list.length) chip.textContent = lo + " tot " + hi + " jaar";
+  })();
+</script>
 <script>
   // Let the timer on the phone mockup tick down, so the hero feels alive.
   (function () {

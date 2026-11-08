@@ -158,6 +158,8 @@
 
   Missie.start({
     key: "paasei",
+    // the colours of this mission page; see the :root block in ../assets/missie.css for every name
+    kleuren: { night: "#0f2a24", card: "#17392f", line: "#2d5c4f", cream: "#f6fff4", muted: "#b5dccb", red: "#ff7aa2", yellow: "#ffd23f", mint: "#9cf0c0", onYellow: "#0f2a24", glow: "rgba(255, 122, 162, 0.14)", diplomaRand: "#ffd9e6", diplomaTitel: "#c9356a", zegel: "#c9356a" },
     answers: ["256", "PIEP", "523", "6841"],
     steps: [
       {
@@ -237,7 +239,6 @@
     parent: {
       title: "Zo zet je Het Paasei-alarm klaar",
       intro: "Een escaperoom voor Pasen, thuis of in de tuin. De kinderen lossen vier raadsels op papier op en vullen de codes in op deze pagina. Na elke goede code vertelt de pagina waar de volgende envelop ligt. Na de laatste code vinden ze het gouden ei.",
-      facts: ["6 tot 10 jaar", "2 tot 8 kinderen", "ongeveer 45 minuten", "15 minuten voorbereiden"],
       formTitle: "Jullie paasfeest",
       nameLabel: "Voor wie is het feest?",
       prep: [

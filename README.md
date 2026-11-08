@@ -26,9 +26,23 @@ Escaperooms voor kinderfeestjes, die ouders zelf printen. De ouders printen de p
 
 ## Zo is het gebouwd
 
-- `assets/missie.js` is de spelmotor. Die doet de timer, het codeslot, de hints, de verstopplekken, het diploma, de pagina voor ouders en het printen.
-- `assets/missie.css` is de gedeelde opmaak. Een missie kan de kleuren aanpassen met CSS-variabelen.
-- Elke missie heeft een eigen map met een `index.html` en een `missie.js`. Daarin staan het verhaal, de codes, de hints en de puzzelvellen (SVG in millimeters, A4). Een nieuwe missie maken is dus: kopieer een map en vervang de inhoud.
+```
+missies.js              de lijst met alle missies: titel, thema, leeftijd, speeltijd, kaart
+index.html              de homepage; de kaarten en de filter per thema komen uit missies.js
+assets/missie.js        de spelmotor: timer, codeslot, hints, diploma, ouderpagina, printen
+assets/missie.css       de gedeelde opmaak; elke missie kiest zijn eigen kleuren
+<missie>/index.html     de pagina, voor elke missie hetzelfde
+<missie>/missie.js      het verhaal, de codes, de hints en de puzzelvellen
+<missie>/icoon.svg      het plaatje op de homepage
+_sjabloon/              het startpunt voor een nieuwe missie
+tools/                  hulpscripts: missie aanmaken, controleren, uitspelen
+```
+
+**Een missie toevoegen:** `node tools/nieuwe-missie.js <map> "<Titel>" <Thema>`. Daarna vul je het verhaal en de puzzels in. Alle stappen staan in [MISSIE-TOEVOEGEN.md](MISSIE-TOEVOEGEN.md).
+
+**Controleren:**
+- `node tools/controleer.js` controleert alle missies zonder browser.
+- `node tools/speeltest.js` speelt ze allemaal echt uit. Daarvoor heb je Playwright nodig.
 
 Het is een statische site zonder build-stap en zonder afhankelijkheden. De instellingen en de voortgang bewaart de browser in `localStorage`.
 
@@ -47,4 +61,4 @@ Zet GitHub Pages aan voor deze repository (Settings → Pages → *Deploy from a
 
 - De puzzelvellen ook als PDF aanbieden.
 - De drie nieuwe missies testen met echte kinderen: De Verdwenen Mijter, Het Paasei-alarm en Het Spookslot.
-- Meer verjaardagsmissies maken, want die kun je het hele jaar spelen.
+- Meer missies maken, vooral voor verjaardagen, want die kun je het hele jaar spelen.

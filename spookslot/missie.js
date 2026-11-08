@@ -140,6 +140,8 @@
 
   Missie.start({
     key: "spookslot",
+    // the colours of this mission page; see the :root block in ../assets/missie.css for every name
+    kleuren: { night: "#120d1f", card: "#1f1733", line: "#3d2f5f", cream: "#f4efff", muted: "#b9addb", red: "#ff5a67", yellow: "#ff9f1c", mint: "#a6f5c9", onYellow: "#120d1f", glow: "rgba(166, 245, 201, 0.10)", btnShadow: "#b35f00", diplomaRand: "#ffd29a", diplomaLijn: "#b35f00", diplomaTitel: "#5b3f9e", zegel: "#e8701a" },
     answers: ["KAARS", "7539", "396", "VRIJ"],
     steps: [
       {
@@ -219,7 +221,6 @@
     parent: {
       title: "Zo zet je Het Spookslot klaar",
       intro: "Een escaperoom voor Halloween of een griezelfeestje thuis, voor wat oudere kinderen. Het is spannend, maar niet eng. De kinderen lossen vier raadsels op papier op en vullen de codes in op deze pagina. Na de laatste code is het spook vrij en vinden ze de schat.",
-      facts: ["8 tot 12 jaar", "3 tot 8 kinderen", "ongeveer 60 minuten", "15 minuten voorbereiden"],
       formTitle: "Jullie griezelfeest",
       nameLabel: "Naam van de jarige of het feest",
       prep: [

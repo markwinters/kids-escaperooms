@@ -63,8 +63,62 @@
     }
   };
 
+  // ------------------------------------------------------------------ catalog, colours and checks
+  // the entry for this mission in ../missies.js (leeftijd, kinderen, minuten, ...)
+  function catalogEntry(id) {
+    var list = window.MISSIES || [];
+    for (var i = 0; i < list.length; i++) if (list[i].id === id) return list[i];
+    return null;
+  }
+  function factsFor(M, info) {
+    if (M.parent.facts) return M.parent.facts;
+    if (!info) return [];
+    return [
+      info.leeftijd[0] + " tot " + info.leeftijd[1] + " jaar",
+      info.kinderen[0] + " tot " + info.kinderen[1] + " kinderen",
+      "ongeveer " + info.minuten + " minuten",
+      info.klaarzetten + " minuten voorbereiden"
+    ];
+  }
+  // M.kleuren = { night: "#...", onYellow: "#...", btnShadow: "#...", ... } becomes --night, --on-yellow, --btn-shadow
+  function applyColours(kleuren) {
+    if (!kleuren) return;
+    var root = document.documentElement;
+    Object.keys(kleuren).forEach(function (k) {
+      root.style.setProperty("--" + k.replace(/[A-Z]/g, function (c) { return "-" + c.toLowerCase(); }), kleuren[k]);
+    });
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta && kleuren.night) meta.setAttribute("content", kleuren.night);
+  }
+  // returns a list of problems; an empty list means the mission is complete
+  function check(M) {
+    var out = [], n = (M.steps || []).length;
+    if (!M.key) out.push("key ontbreekt");
+    if (!n) out.push("er zijn geen steps");
+    if ((M.answers || []).length !== n) out.push("aantal answers (" + (M.answers || []).length + ") is niet gelijk aan aantal steps (" + n + ")");
+    if ((M.fields || []).length !== n) out.push("aantal fields (" + (M.fields || []).length + ") moet gelijk zijn aan aantal steps (" + n + "): één verstopplek per envelop na de eerste, plus de plek van de schat");
+    (M.steps || []).forEach(function (st, i) {
+      var a = (M.answers || [])[i] || "";
+      ["title", "text", "why"].forEach(function (k) { if (!st[k]) out.push("step " + (i + 1) + ": " + k + " ontbreekt"); });
+      if (!st.hints || !st.hints.length) out.push("step " + (i + 1) + ": geen hints");
+      if (st.mode === "text" && !/^[A-Z]+$/.test(a)) out.push("step " + (i + 1) + ": code '" + a + "' moet alleen hoofdletters A-Z zijn");
+      if (st.mode !== "text" && !/^[0-9]+$/.test(a)) out.push("step " + (i + 1) + ": code '" + a + "' moet alleen cijfers zijn (of zet mode: \"text\")");
+    });
+    (M.fields || []).forEach(function (f) { if (!M.defaults || !(f.key in M.defaults)) out.push("defaults mist '" + f.key + "'"); });
+    if (!M.defaults || !M.defaults.name || !M.defaults.minutes) out.push("defaults mist name of minutes");
+    if (typeof M.sheets !== "function") out.push("sheets ontbreekt");
+    return out;
+  }
+
   // ------------------------------------------------------------------ the game
   function start(M) {
+    var info = catalogEntry(M.key);
+    var problems = check(M);
+    if (problems.length) {
+      document.body.insertAdjacentHTML("afterbegin", '<pre style="background:#fff;color:#900;padding:12px;white-space:pre-wrap">Deze missie klopt nog niet:\n- ' + problems.map(esc).join("\n- ") + "</pre>");
+      return;
+    }
+    applyColours(M.kleuren);
     var N = M.steps.length;
     var FRESH_GAME = { phase: "intro", step: 0, startedAt: 0, hints: [], finishedAt: 0, timeUpSeen: false };
     function fresh(extra) { return Object.assign({}, FRESH_GAME, { hints: M.steps.map(function () { return 0; }) }, extra || {}); }
@@ -240,7 +294,8 @@
         '<div class="d-stats"><span>Tijd: ' + fmt(elapsed()) + "</span><span>Hints: " + used + "</span><span>" + esc(date) + "</span></div>" +
         '<div class="seal">' + dip.seal + "</div>" +
         "</div>" +
-        '<button class="btn secondary" type="button" id="again">Nog een keer spelen</button>';
+        '<button class="btn secondary" type="button" id="again">Nog een keer spelen</button>' +
+        '<p class="more"><a href="../#missies">Kies een nieuwe missie</a></p>';
       document.getElementById("again").addEventListener("click", function () { game = fresh(); persist(); render(); });
     }
 
@@ -258,7 +313,7 @@
         '<p class="eyebrow">Voor de spelleider</p>' +
         '<h1 class="title-l">' + esc(P.title) + "</h1>" +
         "<p>" + esc(P.intro) + "</p>" +
-        '<div class="facts">' + P.facts.map(function (f) { return '<span class="fact">' + esc(f) + "</span>"; }).join("") + "</div>" +
+        '<div class="facts">' + factsFor(M, info).map(function (f) { return '<span class="fact">' + esc(f) + "</span>"; }).join("") + "</div>" +
         "</div>" +
         '<div class="cols">' +
         '<div class="card"><h2 class="title-l" style="font-size:26px">' + esc(P.formTitle) + "</h2>" +
@@ -325,5 +380,5 @@
     render(); tick();
   }
 
-  window.Missie = { start: start, svg: S };
+  window.Missie = { start: function (M) { window.Missie.config = M; start(M); }, check: check, svg: S };
 })();

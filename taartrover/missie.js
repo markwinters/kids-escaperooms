@@ -297,7 +297,6 @@
     parent: {
       title: "Zo zet je De Taartrover klaar",
       intro: "Een escaperoom voor een kinderfeestje thuis. De kinderen lossen vier raadsels op papier op en vullen de codes in op deze pagina. Na elke goede code vertelt de pagina waar de volgende envelop ligt. Na de laatste code vinden ze de taart.",
-      facts: ["7 tot 10 jaar", "3 tot 8 kinderen", "ongeveer 45 minuten", "15 minuten voorbereiden"],
       formTitle: "Jullie feest",
       nameLabel: "Naam van de jarige",
       prep: [
