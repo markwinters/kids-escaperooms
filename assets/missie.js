@@ -286,7 +286,7 @@
         "</div></details>" +
         '<div class="sheets-section" style="display:flex;flex-direction:column;gap:14px">' +
         '<h2 class="title-l" style="font-size:26px">De puzzelvellen</h2>' +
-        '<p class="note-box">Print de ' + N + ' vellen op A4. Elk vel komt op een eigen pagina. Dit is de proefversie: in de gekochte download krijg je ze ook als PDF.</p>' +
+        '<p class="note-box">Print de ' + N + ' vellen op A4. Elk vel komt op een eigen pagina.</p>' +
         '<button class="btn" type="button" id="print" style="align-self:flex-start">Print de puzzelvellen</button>' +
         '<div class="sheets">' +
         M.sheets(S).map(function (sh) { return '<div class="sheet-wrap"><p class="sheet-cap">' + esc(sh[0]) + "</p>" + sh[1] + "</div>"; }).join("") +

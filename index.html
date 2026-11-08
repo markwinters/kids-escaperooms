@@ -187,16 +187,6 @@ ul.cross li::before { background: var(--line) url("data:image/svg+xml,%3Csvg xml
 .tag.soon { background: rgba(23, 21, 58, .75); color: var(--cream); border: 1px solid rgba(255, 255, 255, .25); }
 .theme.soon .theme-body h3 { color: var(--muted); }
 
-/* price */
-.price-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0; padding: 0; overflow: hidden; }
-@media (max-width: 860px) { .price-card { grid-template-columns: minmax(0, 1fr); } }
-.price-left { padding: 34px; display: flex; flex-direction: column; gap: 16px; background: linear-gradient(160deg, rgba(255, 210, 63, .14), transparent 60%); border-right: 1px solid var(--line); }
-@media (max-width: 860px) { .price-left { border-right: 0; border-bottom: 1px solid var(--line); } }
-.price { font-family: var(--font-display); font-size: 72px; line-height: 1; color: var(--yellow); }
-.price small { font-size: 24px; color: var(--muted); }
-.price-right { padding: 34px; display: flex; flex-direction: column; gap: 16px; }
-.note { font-size: 15px; color: var(--muted); }
-
 /* faq */
 .faq { display: grid; gap: 12px; max-width: 820px; }
 details { border: 1px solid var(--line); border-radius: 16px; background: var(--card); }
@@ -228,9 +218,8 @@ footer a { color: var(--muted); }
     <nav class="nav-links" aria-label="Hoofdmenu">
       <a href="#hoe">Hoe werkt het</a>
       <a href="#missies">Missies</a>
-      <a href="#prijs">Prijs</a>
       <a href="#vragen">Vragen</a>
-      <a class="btn" href="taartrover/">Speel de demo</a>
+      <a class="btn" href="taartrover/">Speel nu</a>
     </nav>
   </div>
 </header>
@@ -244,7 +233,7 @@ footer a { color: var(--muted); }
         <h1 class="display">Een escaperoom.<br><em>Gewoon thuis.</em></h1>
         <p class="lead">Print de puzzels, verstop de enveloppen en laat de kinderen een uur lang een spannende missie spelen. Op de telefoon staan de timer, de hints en een echt codeslot.</p>
         <div class="cta-row">
-          <a class="btn" href="taartrover/">Probeer De Taartrover gratis</a>
+          <a class="btn" href="taartrover/">Start De Taartrover</a>
           <a class="btn ghost" href="#hoe">Zo werkt het</a>
         </div>
         <div class="chips">
@@ -252,6 +241,7 @@ footer a { color: var(--muted); }
           <span class="chip">3 tot 8 kinderen</span>
           <span class="chip">45 tot 60 minuten</span>
           <span class="chip">15 minuten klaarzetten</span>
+          <span class="chip">Helemaal gratis</span>
         </div>
       </div>
 
@@ -340,13 +330,13 @@ footer a { color: var(--muted); }
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow">Hoe werkt het</p>
-        <h2 class="h2">Van download tot taart in vier stappen</h2>
+        <h2 class="h2">Van printer tot taart in vier stappen</h2>
       </div>
       <ol class="steps">
         <li class="card">
           <span class="time">2 minuten</span>
           <h3>Kies een missie</h3>
-          <p class="muted">Je koopt een download. Je krijgt meteen de puzzels als PDF en een link naar de spelpagina.</p>
+          <p class="muted">Kies een missie die bij het feest past. Bij Voor ouders vind je de puzzels en de spelpagina.</p>
         </li>
         <li class="card">
           <span class="time">15 minuten</span>
@@ -382,7 +372,7 @@ footer a { color: var(--muted); }
       </div>
       <div class="mission-copy">
         <p class="eyebrow">De eerste missie</p>
-        <h2 class="h2">Probeer hem nu, gratis</h2>
+        <h2 class="h2">Speel hem nu</h2>
         <p class="lead muted">De Taartrover is helemaal speelbaar. Bij <strong>Voor ouders</strong> vul je de naam en de verstopplekken in. Daar staan ook de voorbereiding, de antwoorden en de vier puzzelvellen om te printen.</p>
         <ul class="check">
           <li>Voor kinderen van 7 tot 10 jaar</li>
@@ -414,7 +404,7 @@ footer a { color: var(--muted); }
             <h3>De Taartrover</h3>
             <p class="meta">Verjaardag · 7 tot 10 jaar</p>
             <p class="muted">Wie heeft de verjaardagstaart gestolen? Vind de dader voordat de slagroom smelt.</p>
-            <a class="btn" href="taartrover/">Speel gratis</a>
+            <a class="btn" href="taartrover/">Speel deze missie</a>
           </div>
         </article>
         <article class="theme">
@@ -426,7 +416,7 @@ footer a { color: var(--muted); }
             <h3>Het Spookslot</h3>
             <p class="meta">Halloween · 8 tot 12 jaar</p>
             <p class="muted">Spook Wiebe zit al honderd jaar opgesloten. Kraak het geheimschrift en breek de vloek voor middernacht.</p>
-            <a class="btn" href="spookslot/">Speel gratis</a>
+            <a class="btn" href="spookslot/">Speel deze missie</a>
           </div>
         </article>
         <article class="theme">
@@ -438,7 +428,7 @@ footer a { color: var(--muted); }
             <h3>De Verdwenen Mijter</h3>
             <p class="meta">Sinterklaas · 5 tot 9 jaar</p>
             <p class="muted">De mijter van de Sint is weg. Volg het pepernotenspoor en vind hem voor pakjesavond.</p>
-            <a class="btn" href="mijter/">Speel gratis</a>
+            <a class="btn" href="mijter/">Speel deze missie</a>
           </div>
         </article>
         <article class="theme">
@@ -450,38 +440,9 @@ footer a { color: var(--muted); }
             <h3>Het Paasei-alarm</h3>
             <p class="meta">Pasen · 6 tot 10 jaar</p>
             <p class="muted">Het gouden paasei is gestolen uit de eierfabriek. Volg het spoor van gele donsveertjes.</p>
-            <a class="btn" href="paasei/">Speel gratis</a>
+            <a class="btn" href="paasei/">Speel deze missie</a>
           </div>
         </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="prijs">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow">Prijs</p>
-        <h2 class="h2">Eén download, een heel feest</h2>
-        <p class="lead muted">Geen verzendkosten en niets om op te wachten. Je krijgt alles meteen na het betalen.</p>
-      </div>
-      <div class="card price-card">
-        <div class="price-left">
-          <p class="eyebrow">Per missie</p>
-          <p class="price">€9,95 <small>eenmalig</small></p>
-          <p class="muted">Print zo vaak als je wilt. Speel het spel opnieuw met broertjes, zusjes of neefjes.</p>
-          <a class="btn" href="taartrover/">Probeer eerst gratis</a>
-          <p class="note">De shop gaat binnenkort open. Tot die tijd kun je alle vier de missies helemaal gratis spelen.</p>
-        </div>
-        <div class="price-right">
-          <h3 class="display" style="font-size:26px">Dit krijg je</h3>
-          <ul class="check">
-            <li>4 puzzelvellen als PDF om te printen op A4</li>
-            <li>De spelpagina voor de telefoon: timer, codeslot en 2 hints per puzzel</li>
-            <li>Jouw eigen verstopplekken en de naam van de jarige in het spel</li>
-            <li>Een diploma voor alle detectives</li>
-            <li>Een handleiding voor ouders met alle antwoorden</li>
-          </ul>
-        </div>
       </div>
     </div>
   </section>

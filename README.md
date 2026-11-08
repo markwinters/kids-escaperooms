@@ -4,7 +4,7 @@ Escaperooms voor kinderfeestjes, die ouders zelf printen. De ouders printen de p
 
 ## Pagina's
 
-- `index.html`: de homepage. Hier staat hoe het werkt, wat je krijgt, de missies, de prijs en de vragen van ouders.
+- `index.html`: de homepage. Hier staat hoe het werkt, wat je krijgt, de missies en de vragen van ouders. Alles is gratis.
 - `taartrover/index.html`: **De Taartrover**, een missie die je helemaal kunt spelen (7 tot 10 jaar, 45 minuten).
   - **Spelen**: de timer, het codeslot, twee hints per puzzel, de verstopplek van de volgende envelop en aan het eind een diploma.
   - **Voor ouders** (`#ouders`): de naam van de jarige en de verstopplekken, de voorbereiding, de antwoorden en de vier puzzelvellen. Met de printknop krijg je één A4-vel per pagina.
@@ -45,7 +45,6 @@ Zet GitHub Pages aan voor deze repository (Settings → Pages → *Deploy from a
 
 ## Nog te doen
 
-- Een shop koppelen, bijvoorbeeld Lemon Squeezy, Gumroad of Shopify met digitale downloads. Nu staat er "De shop gaat binnenkort open".
 - De puzzelvellen ook als PDF aanbieden.
 - De drie nieuwe missies testen met echte kinderen: De Verdwenen Mijter, Het Paasei-alarm en Het Spookslot.
-- Meer verjaardagsmissies maken, want die verkoop je het hele jaar.
+- Meer verjaardagsmissies maken, want die kun je het hele jaar spelen.
