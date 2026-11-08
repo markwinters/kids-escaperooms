@@ -34,6 +34,17 @@
     lines: function (x, y, arr, size, gap) { return arr.map(function (l, k) { return S.txt(x, y + k * gap, l, size); }).join(""); },
     // seeded random, so every print of a sheet looks the same
     rng: function (seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; },
+    // a cream box with a label and n empty boxes to write a code in
+    answerBox: function (y, n, label, opts) {
+      opts = opts || {};
+      var x = opts.x || 84, o = '<rect x="16" y="' + (y - 10) + '" width="178" height="' + (opts.under ? 35 : 30) + '" rx="3" fill="' + (opts.fill || "#fff7e0") + '" stroke="' + S.INK + '" stroke-width="0.5"/>' +
+        S.txt(22, y, label, 4.6, { weight: 800 });
+      for (var b = 0; b < n; b++) {
+        o += '<rect x="' + (x + b * 15) + '" y="' + (y + 4) + '" width="12" height="13" rx="1.5" fill="#fff" stroke="' + S.INK + '" stroke-width="0.5"/>';
+        if (opts.under) o += S.txt(x + b * 15 + 6, y + 21.5, opts.under[b], 3.2, { fill: S.SOFT, anchor: "middle" });
+      }
+      return o;
+    },
     // style: { header, footer, stamp, accent, total }
     frame: function (style, n, title, intro, inner) {
       var accent = style.accent || S.RED;

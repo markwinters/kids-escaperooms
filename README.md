@@ -13,6 +13,16 @@ Escaperooms voor kinderfeestjes, die ouders zelf printen. De ouders printen de p
   2. Kleur de pepernoten: wie de goede hokjes inkleurt, ziet de code `631`.
   3. Het rijmpje van de Sint: kies bij elk gat het plaatje dat rijmt. Dat geeft de code `GOUD`.
   4. De pakjes van de ekster: knip de pakjes uit en zet ze van laag naar hoog. Dat geeft de code `4172`.
+- `paasei/index.html`: **Het Paasei-alarm**, de paasmissie (6 tot 10 jaar, 45 minuten). Het gouden ei is weg uit de eierfabriek. De dief blijkt een kuiken dat erop wil broeden.
+  1. De eieren-sudoku: een sudoku van 4 bij 4 met eieren. Met de sleutel geeft dat de code `256`.
+  2. De spiegelbrief: een brief in spiegelschrift. De code is `PIEP`.
+  3. De weegschaal van de fabriek: plaatjessommen, met als code `523`.
+  4. De kaart van de tuin: coördinaten op een kaart, met als code `6841`.
+- `spookslot/index.html`: **Het Spookslot**, de Halloweenmissie (8 tot 12 jaar, 60 minuten). Spook Wiebe zit opgesloten door een vloek.
+  1. Het geheimschrift in de hal: een schuifalfabet om uit te knippen. De code is `KAARS`.
+  2. Vier spoken, vier kamers: een logicapuzzel met een rooster, met als code `7539`.
+  3. Het toverkerkhof: een magisch vierkant, met als code `396`.
+  4. Het klopalfabet: morsecode, met als code `VRIJ`.
 
 ## Zo is het gebouwd
 
@@ -37,5 +47,5 @@ Zet GitHub Pages aan voor deze repository (Settings → Pages → *Deploy from a
 
 - Een shop koppelen, bijvoorbeeld Lemon Squeezy, Gumroad of Shopify met digitale downloads. Nu staat er "De shop gaat binnenkort open".
 - De puzzelvellen ook als PDF aanbieden.
-- De missies Spookslot en Paasei-alarm maken.
-- De Verdwenen Mijter testen met echte kinderen van 5 tot 9 jaar.
+- De drie nieuwe missies testen met echte kinderen: De Verdwenen Mijter, Het Paasei-alarm en Het Spookslot.
+- Meer verjaardagsmissies maken, want die verkoop je het hele jaar.

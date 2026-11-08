@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Het Paasei-alarm · Feestmissie</title>
+<meta name="description" content="Speel Het Paasei-alarm: een paas-escaperoom voor thuis, met timer, hints en codeslot op de telefoon.">
+<meta name="theme-color" content="#0f2a24">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito:wght@400;600;700;800;900&family=Special+Elite&display=swap">
+<link rel="stylesheet" href="../assets/missie.css">
+<style>
+/* Pasen: deep spring green, egg-yolk yellow, pink */
+:root {
+  --night: #0f2a24;
+  --card: #17392f;
+  --line: #2d5c4f;
+  --cream: #f6fff4;
+  --muted: #b5dccb;
+  --red: #ff7aa2;
+  --yellow: #ffd23f;
+  --mint: #9cf0c0;
+  --on-yellow: #0f2a24;
+}
+body { background: radial-gradient(1200px 600px at 50% -200px, rgba(255, 122, 162, 0.14), transparent 70%), var(--night); }
+.diploma { border-color: #ffd9e6; }
+.diploma .d-title { color: #c9356a; }
+.seal { background: #c9356a; box-shadow: 0 0 0 4px #fff, 0 0 0 6px #c9356a; }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="badge" href="../" aria-label="Terug naar Feestmissie" style="text-decoration:none">
+    <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><circle cx="11" cy="11" r="7.5" fill="none" stroke="#ffd23f" stroke-width="2.6"/><path d="M16.5 16.5 L23 23" stroke="#ffd23f" stroke-width="3.2" stroke-linecap="round"/><path d="M7.5 12.5 h7 l-1-3.4 h-5 z" fill="#ff5a67"/><circle cx="11" cy="8.2" r="1.3" fill="#ff5a67"/></svg>
+    <span class="badge-text">Feestmissie</span>
+  </a>
+  <nav class="tabs" aria-label="Weergave">
+    <a href="#" id="tab-play">Spelen</a>
+    <a href="#ouders" id="tab-parent">Voor ouders</a>
+  </nav>
+</header>
+
+<main>
+  <section class="game" id="view-play" aria-live="polite"></section>
+  <section class="guide" id="view-parent" hidden></section>
+</main>
+<div class="overlay" id="overlay" hidden></div>
+
+<script src="../assets/missie.js"></script>
+<script src="missie.js"></script>
+</body>
+</html>
